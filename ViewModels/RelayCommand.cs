@@ -29,6 +29,5 @@ namespace mybutton.ViewModels
         {
             _execute(parameter);
         }
-
     }
 }
