@@ -42,8 +42,8 @@ namespace mybutton.ViewModels
 
         private void ExecuteButtonCommand(object parameter)
         {
-            ReferenceObject refobj = parameter as ReferenceObject;
-            MessageBox.Show($"Кнопка нажата!\n {refobj.ToString()}");
+           // ReferenceObject refobj = parameter as ReferenceObject;
+            MessageBox.Show($"Кнопка нажата!\n {_referenceObject.ToString()}");
         }
 
         public object LoadData(DataObjectViewModel viewModel, CancellationToken cancellationToken)
