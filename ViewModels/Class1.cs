@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.ComponentModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using TFlex.DOCs.Model;
@@ -10,11 +11,21 @@ using TFlex.DOCs.UI.Utils.Helpers;
 
 namespace mybutton.ViewModels
 {
-    class Class1 : ViewModel, IUserControlViewModel
+    class Class1 : ViewModel, IUserControlViewModel, INotifyPropertyChanged
     {
         public ICommand ButtonCommand { get; }
         private ReferenceObject _referenceObject;
+        public ReferenceObject referenceObject
+        {
+            get => _referenceObject;
+            set
+            {
+                _referenceObject = value;
+                OnPropertyChanged(nameof(referenceObject));
+            }
 
+        }
+        
 
         //Конструкторы
         public Class1() : base(null)
@@ -31,7 +42,8 @@ namespace mybutton.ViewModels
 
         private void ExecuteButtonCommand(object parameter)
         {
-            MessageBox.Show($"Кнопка нажата!\n {_referenceObject.ToString()}");
+            ReferenceObject refobj = parameter as ReferenceObject;
+            MessageBox.Show($"Кнопка нажата!\n {refobj.ToString()}");
         }
 
         public object LoadData(DataObjectViewModel viewModel, CancellationToken cancellationToken)
